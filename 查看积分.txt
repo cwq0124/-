@@ -1,0 +1,109 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="com.test.*" %> 
+<%@ page import="java.sql.*"   %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link  href="css/style2.css"  rel="stylesheet" />
+<link  href="css/style3.css"  rel="stylesheet" />
+<title>查看积分</title>
+</head>
+<!-- 导航条 -->  
+ <body>
+        <!--导航栏一般需要一个容器，设置width:100%适应浏览器的大小变化-->
+  <% 
+ 
+  String uname=(String)session.getAttribute("userName");
+  if(session.getAttribute("userName")==null)
+	      response.sendRedirect("Login.jsp"); 
+  %>      
+ <div id="loginaf">
+            <table width="100%">
+            <tr>
+            
+            <td width="30%">
+             
+             <a href="http://localhost:8080/XiaoBai/Home.jsp"> 
+                <h1 class="title">  
+                	小白教资
+                </h1>  
+             </a>
+             </td>
+             <td width="54%">
+             <a href="http://localhost:8080/XiaoBai/Personal.jsp">
+             	<h3 class="title" style="float:right">我的空间&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
+             </a>
+             </td>
+             <td width="16%">
+             
+              <a href="http://localhost:8080/XiaoBai/Login.jsp">
+             		<h3 class="title" class="" style="float:right">退出&nbsp;&nbsp;&nbsp;&nbsp;</h3>
+              </a> 
+             
+              
+             		<h3 class="" style="float:right;" >&nbsp;&nbsp;用户名：<%= uname%>&nbsp;&nbsp;&nbsp;&nbsp;</h3>
+              
+              </td>    
+            
+            </tr>
+            </table>
+            </div>
+			<jsp:include page="Login_header.jsp">
+			<jsp:param value="" name=""/>
+			</jsp:include>
+<br/><br/><br/>
+
+
+<table class="left-main" height="100%">
+
+	<tr height="20%">
+		<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td><center><img src="image/users.png"></center>&nbsp;&nbsp;&nbsp;&nbsp;<br/><center><%=uname %></center><br/><br/>
+        <a href="http://localhost:8080/XiaoBai/Personal.jsp"> <span >修改密码</span>  </a><br/><br/>
+		<a href="http://localhost:8080/XiaoBai/checkScore.jsp"><span>查看积分</span></a><br/><br/>
+		</td>
+		<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	</tr>	
+</table>
+
+<br/><br/>
+<center><h3>您当前积分为：
+   <%
+		String driverName="com.mysql.jdbc.Driver";
+        String sc="";
+	    String url="jdbc:mysql://127.0.0.1/小白教资?user=root&password=123456&characterEncoding=utf-8";
+	    try{
+	        Class.forName(driverName);
+	        }catch(ClassNotFoundException e){
+	     	   e.printStackTrace();
+	     	   out.print("wrong!");
+	    }
+	    Connection  con=DriverManager.getConnection(url);
+	    try{
+	  	     
+	  	     String  sql="select * from score where userName = '" + uname + "';";
+	  	     PreparedStatement pstmt=con.prepareStatement(sql);
+	  		 con=DBConnection.getConnection();
+	         ResultSet rs = pstmt.executeQuery();
+	         if(uname!=null){
+	           	if(rs.next()){
+	           	    sc=rs.getString("score");   
+	           	   // out.print(sc);
+	           	}
+	         }
+	   		rs.close();
+	       	con.close();
+	   	}catch(SQLException e){
+	       e.printStackTrace();}
+
+	%>
+<%=sc %>分</h3></center>
+<br/><br/><br/>
+<form action="Home.jsp" method="post" id="nameform">
+<input type="submit" form="nameform" class="inputDiv smBtn" value="去做题"  >
+</form>
+
+</body>
+</html>

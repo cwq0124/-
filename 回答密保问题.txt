@@ -1,0 +1,80 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@  page import="java.sql.*"   %>
+<%@  page import="com.test.*" %>
+
+<!doctype html>
+<html lang="en">
+<link  href="css/style.css"  rel="stylesheet" />
+<head>
+	<meta charset="UTF-8">
+	<title>找回密码</title>
+
+</head>
+<body>
+
+<% 
+    request.setCharacterEncoding("UTF-8");
+    String driverName="com.mysql.jdbc.Driver";
+	String  mUserName=request.getParameter("userName");
+	String  mSelectId=request.getParameter("select_id");
+	String  mSelectAnswer=request.getParameter("selectAnswer");
+  /*  String username = request.getParameter("username"); 
+    String userpasswd = request.getParameter("userpasswd");
+    String newuserpasswd=request.getParameter("newuserpasswd");
+    */
+    String url="jdbc:mysql://127.0.0.1/小白教资?user=root&password=123456&characterEncoding=utf-8";
+    try{
+        Class.forName(driverName);
+        }catch(ClassNotFoundException e){
+     	   e.printStackTrace();
+     	   out.print("wrong!");
+    }
+    Connection  con=DriverManager.getConnection(url);
+    try{
+  	     
+  	     String  sql="select * from users where userName = '" + mUserName + "'";
+  	     PreparedStatement pstmt=con.prepareStatement(sql);
+  		 con=DBConnection.getConnection();
+         ResultSet rs = pstmt.executeQuery();
+         if(mUserName!=null&&mSelectAnswer!=null){
+          	if(rs.next()){
+          		String id=rs.getString("questionId");
+          		String an=rs.getString("answer");
+        	  	if(id.equals(mSelectId)){
+        	  		if(an.equals(mSelectAnswer)){
+        	  			session.setAttribute("userName",mUserName);
+        	  			out.print("<script language='javascript'>window.location.href='NewSecurity.jsp';</script>" );
+        	  		}
+        	  		else out.print("<script language='javascript'>alert('密保问题答案错误!!');window.location.href='ValidateSecurity.jsp';</script>" );
+        	  	}
+        	  	else out.print("<script language='javascript'>alert('找回失败!!');window.location.href='ValidateSecurity.jsp';</script>" );
+         	}
+         }
+  		rs.close();
+      	con.close();
+  	}catch(SQLException e){
+      e.printStackTrace();}
+
+
+%>
+    
+ 
+ <h3 style="text-align:center">找回密码</h3>
+	
+		<br/><br/>
+			<form action="" method="post" id="nameform">
+				<input type="text" name="userName"class="inputDiv" placeholder="输入用户名">
+			    <select name="select_id" class="inputDiv"> 
+				<option value="1">你的生日是哪一天？</option> 
+				<option value="2">你的高中校名是什么？</option> 
+				<option value="3">你的大学辅导员的姓名是什么？</option> 
+				</select> 
+				<input type="text"  class="inputDiv" placeholder="输入密保问题答案"  name="selectAnswer"/>
+				<input type="submit" value="确认"  class="inputDiv smBtn">
+			
+			</form>
+
+ 
+</body>
+

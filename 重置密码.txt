@@ -1,0 +1,75 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="com.test.*" %> 
+<%@ page import="java.sql.*"   %>
+<!DOCTYPE html>
+<html>
+<head>
+<link  href="css/style.css"  rel="stylesheet" />
+<meta charset="UTF-8">
+<title>重置密码</title>
+</head>
+<body>
+<%	
+	String uname=(String)session.getAttribute("UserName");
+%>
+<h3 style="text-align:center">重置密码</h3>
+	
+		<br/><br/>
+			<form action="" method="post" id="nameform">
+				
+				<input type="password" name="newpasswd"class="inputDiv" placeholder="输入密码" >
+				<input type="password" name="pnewpasswd"class="inputDiv" placeholder="确认密码" >
+				<input type="text"  name="code" class="codeDiv" placeholder="输入验证码 "/>
+ 					    <img id="code" src="validateCode.jsp" />&nbsp;	
+						<a href="javascript:window.location.reload()" style="text-decoration:none;">
+						<font color="004BFF" >换一张</font> </a>
+				<br/>	
+
+				<input type="submit" value="确认"  class="inputDiv smBtn" >
+			</form>
+
+
+   <%
+        String  mUserName=(String)session.getAttribute("userName");
+		String  mNewPassWord=request.getParameter("newpasswd");
+		String  NewPassWord=request.getParameter("pnewpasswd");
+		String driverName="com.mysql.jdbc.Driver";
+	    String url="jdbc:mysql://127.0.0.1/学生系统?user=root&password=123456&characterEncoding=utf-8";
+	    try{
+	        Class.forName(driverName);
+	        }catch(ClassNotFoundException e){
+	     	   e.printStackTrace();
+	     	   out.print("wrong!");
+	    }
+	    Connection  con=DriverManager.getConnection(url);
+	    try{
+	  	     
+	  	     String  sql="select * from users where userName = '" + mUserName +"';";
+	  	     PreparedStatement pstmt=con.prepareStatement(sql);
+	  		 con=DBConnection.getConnection();
+	         ResultSet rs = pstmt.executeQuery();
+	         if(mNewPassWord!=null&&mUserName!=null&&NewPassWord!=null){
+	           	if(rs.next()){
+	         	  	if(mNewPassWord.equals(NewPassWord)){
+	       	  			PreparedStatement tmt = con.prepareStatement("Update users set passWord='" + mNewPassWord + "'where userName='" +mUserName+  "';");
+	            				int rst = tmt.executeUpdate();
+	             			if (rst != 0){
+	             				out.println("<script language='javascript'>alert('用户重置密码成功!');window.location.href='Login.jsp';</script>");
+	                   		}
+	             			else{
+	                				out.println("<script language='javascript'>alert('用户重置密码失败！');window.location.href='NewSecurity.jsp';</script>");  }}
+	       	  	 	else{
+	       		    		out.print("<script language='javascript'>alert('两次输入的新密码不一致!!');window.location.href='NewSecurity.jsp';</script>" );}}
+	          }
+	   		rs.close();
+	       	con.close();
+	   	}catch(SQLException e){
+	       e.printStackTrace();}
+	     finally{
+	   	DBConnection.free(con,null,null);}
+
+	%>
+
+</body>
+</html>

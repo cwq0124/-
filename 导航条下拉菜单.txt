@@ -1,0 +1,66 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<link  href="css/style2.css"  rel="stylesheet" />
+      <div class="nav top-left-nav" style="z-index:999;">
+        <!--开始实现列表-->
+       <ul>
+        <li class="dropdown first-nav"><span>小学<i class="icon icon-arrow"></i></span>
+         <ul class="sec-nav">
+          <li><a href="#">综合素质</a></li>
+          <li><a href="#">教育教学知识与能力</a></li>
+         </ul> </li>
+        <li class="dropdown  first-nav"><span>初中<i class="icon icon-arrow"></i></span>
+         <ul class="sec-nav">
+          <li><a href="#">综合素质</a></li>
+          <li><a href="#">教育知识与能力</a></li>
+          <li><a href="#">语文学科知识与教学能力</a></li>
+          <li><a href="#">数学学科知识与教学能力</a></li>
+          <li><a href="#">英语学科知识与教学能力</a></li>
+          <li><a href="#">物理学科知识与教学能力</a></li>
+          <li><a href="#">化学学科知识与教学能力</a></li>
+          <li><a href="#">生物学科知识与教学能力</a></li>
+          <li><a href="#">历史学科知识与教学能力</a></li>
+          <li><a href="#">政治学科知识与教学能力</a></li>
+          <li><a href="#">地理学科知识与教学能力</a></li>
+          <li><a href="#">音乐学科知识与教学能力</a></li>
+          <li><a href="#">美术学科知识与教学能力</a></li>
+          <li><a href="#">信息学科知识与教学能力</a></li>
+         </ul> </li>
+        <li class="dropdown  first-nav"><span>中职<i class="icon icon-arrow"></i></span>
+         <ul class="sec-nav">
+         <li><a href="#">综合素质</a></li>
+          <li><a href="#">教育知识与能力</a></li>
+          <li><a href="#">语文学科知识与教学能力</a></li>
+          <li><a href="#">数学学科知识与教学能力</a></li>
+          <li><a href="#">英语学科知识与教学能力</a></li>
+          <li><a href="#">物理学科知识与教学能力</a></li>
+          <li><a href="#">化学学科知识与教学能力</a></li>
+          <li><a href="#">生物学科知识与教学能力</a></li>
+          <li><a href="#">历史学科知识与教学能力</a></li>
+          <li><a href="#">政治学科知识与教学能力</a></li>
+          <li><a href="#">地理学科知识与教学能力</a></li>
+          <li><a href="#">音乐学科知识与教学能力</a></li>
+          <li><a href="#">美术学科知识与教学能力</a></li>
+          <li><a href="#">信息学科知识与教学能力</a></li>
+         </ul> 
+         </li>
+         <li class="dropdown  first-nav"><span>高中<i class="icon icon-arrow"></i></span>
+         <ul class="sec-nav">
+           <li><a href="#">综合素质</a></li>
+          <li><a href="#">教育知识与能力</a></li>
+          <li><a href="#">语文学科知识与教学能力</a></li>
+          <li><a href="#">数学学科知识与教学能力</a></li>
+          <li><a href="#">英语学科知识与教学能力</a></li>
+          <li><a href="#">物理学科知识与教学能力</a></li>
+          <li><a href="#">化学学科知识与教学能力</a></li>
+          <li><a href="#">生物学科知识与教学能力</a></li>
+          <li><a href="#">历史学科知识与教学能力</a></li>
+          <li><a href="#">政治学科知识与教学能力</a></li>
+          <li><a href="#">地理学科知识与教学能力</a></li>
+          <li><a href="#">音乐学科知识与教学能力</a></li>
+          <li><a href="#">美术学科知识与教学能力</a></li>
+          <li><a href="#">信息学科知识与教学能力</a></li>
+         </ul> 
+         </li>
+       </ul>
+      </div>

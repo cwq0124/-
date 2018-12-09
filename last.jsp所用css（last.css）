@@ -1,0 +1,12 @@
+.contect{
+	font-size:15px;
+	color:#0080c0;
+	text-align:center;
+	
+}
+.address{
+	font-size:15px;
+	color:#0080c0;
+	text-align:center;
+	
+}

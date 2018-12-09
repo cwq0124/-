@@ -1,0 +1,25 @@
+.bkzn{
+	position:absolute;
+	left:70%;
+	top:35%;
+	margin:-100px 0 0 -150px;
+	border-top:1px;
+	solid: #000;
+}
+.tit{
+	background:#B0E0E6;
+	text-align:center;
+	
+}
+ .tips{
+	position:absolute;  
+   left:50%;  
+   top:50%;
+   text-align:center;
+}
+.tips .class{
+	text-align:center;
+}
+.tips .t{
+	text-align:center;
+}
